@@ -1,67 +1,61 @@
 // src/App.jsx
 import React from "react";
+import TodayMatches from "./pages/TodayMatches";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+function Home() {
+  return (
+    <section className="home" id="home">
+      <div className="content">
+        <h2>
+          مباريات اليوم وجدول ترتيب <span>البطولات</span>
+        </h2>
+
+        <div className="cells-container">
+          <div className="cell">
+            <p className="title">مباريات اليوم</p>
+            <p className="icon">#</p>
+          </div>
+          <div className="cell">
+            <p className="title">ترتيب البطولات</p>
+            <p className="icon">$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function App() {
   return (
-    <div className="app">
-      {/* NAVBAR STARTS */}
-      <header style={{ background: "orange" }}>
-        <nav className="navbar">
-          <ul>
-            <li>
-              <a href="">البطولات</a>
-            </li>
-            <li>
-              <a href="">مباريات اليوم</a>
-            </li>
-          </ul>
-        </nav>
+    <Router>
+      <div className="app">
+        {/* NAVBAR STARTS */}
+        <header style={{ background: "orange" }}>
+          <nav className="navbar">
+            <ul>
+              <li>
+                <Link to="/">البطولات</Link>
+              </li>
+              <li>
+                <Link to="/today-matches">مباريات اليوم</Link>
+              </li>
+            </ul>
+          </nav>
 
-        <a className="logo" href="/">
-          <i class="fa-regular fa-futbol"></i>
-          نقاط
-        </a>
-      </header>
-      {/* NAVBAR ENDS */}
+          <Link className="logo" to="/">
+            <i className="fa-regular fa-futbol"></i>
+            نقاط
+          </Link>
+        </header>
+        {/* NAVBAR ENDS */}
 
-      {/* hero section starts */}
-      <section className="home" id="home">
-        <div className="content">
-          <h2>
-            مباريات اليوم وجدول ترتيب <span>البطولات</span>
-          </h2>
-
-          <div className="cells-container">
-            <div className="cell">
-              <p className="title">مباريات اليوم</p>
-              <p className="icon">#</p>
-            </div>
-            <div className="cell">
-              <p className="title">ترتيب البطولات</p>
-              <p className="icon">$</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* hero section ends */}
-
-      {/* about section starts */}
-      <section className="about" id="about">
-        <h2 className="heading">
-          {" "}
-          <i class="fa-regular fa-futbol"></i> About<span>Me</span>
-        </h2>
-        <div className="row">
-          <div class="image">
-            <p>image here</p>
-          </div>
-          <div className="content">
-            <p>Content here</p>
-          </div>
-        </div>
-      </section>
-      {/* about section ends */}
-    </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/today-matches" element={<TodayMatches />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
